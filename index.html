@@ -51,7 +51,8 @@ button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:man
 @media(max-width:1000px) and (min-width:601px){.layout{padding:16px 18px 40px}.grid-form{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.pagehead{flex-direction:column;align-items:stretch}.page-actions{width:100%}.page-actions .btn,.page-actions input,.page-actions select{flex:1 1 130px}.panel-head.filters>*{flex:1 1 140px}.filters input,.filters select{width:100%!important;min-width:0}.table-wrap td:last-child .btn{margin:2px 0}.grid-form{grid-template-columns:1fr}.bs{grid-template-columns:1fr}.top-actions{width:100%}.top-actions .btn{flex:1 1 auto}}
 @media(max-width:380px){.cards{grid-template-columns:1fr!important}.auth-card{padding:18px}}
-@media(pointer:coarse){input,select,textarea{font-size:16px}.btn{min-height:40px}}
+@media(pointer:coarse){input,select,textarea{font-size:16px}.btn{min-height:42px}.cy-node{min-height:34px}}
+@media(max-width:600px){.main,.page,.panel{min-width:0}.cy-box{touch-action:pan-y}.cy-node{min-height:34px}}
 
 
 /* iOS/Android date fields: stay inside their card, left-aligned */
@@ -90,12 +91,25 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.65}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 .cy-box{position:relative;width:min(100%,740px);aspect-ratio:1/1;margin:0 auto}.cy-ring{position:absolute;inset:0;width:100%;height:100%}.cy-ring circle{fill:none;stroke:#23a35f;stroke-opacity:.45;stroke-width:.6;stroke-dasharray:1.2 1.4;animation:cyflow 40s linear infinite}.cy-ring path{fill:#23a35f}@keyframes cyflow{to{stroke-dashoffset:-100}}
 .cy-node{position:absolute;transform:translate(-50%,-50%);width:23%;min-width:112px;display:flex;align-items:center;gap:7px;text-align:left;padding:8px 10px;border-radius:16px;border:1.5px solid #23a35f66;background:#23a35f14;color:inherit;font:inherit;font-size:clamp(11px,1.5vw,14px);font-weight:700;line-height:1.25;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.cy-node i,.cy-row i{font-style:normal;flex:0 0 26px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:#23a35f33}.cy-node:hover{transform:translate(-50%,-50%) scale(1.06);box-shadow:0 8px 24px #23a35f40}
+.cy-node i,.cy-row i{font-style:normal;flex:0 0 26px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:#23a35f33}.cy-node:hover,.cy-node:focus-visible{transform:translate(-50%,-50%) scale(1.06);box-shadow:0 8px 24px #23a35f40;outline:2px solid #23a35f;outline-offset:2px}
 .cy-node.done{border-color:#23a35f}.cy-node.done i{background:#23a35f;color:#fff}.cy-node.opt{border-style:dashed;border-color:#f5a524aa}.cy-node.on,.cy-row.on{background:linear-gradient(120deg,#187344,#23a35f);color:#fff;border-color:transparent;box-shadow:0 10px 28px #187344aa}.cy-node.on i,.cy-row.on i{background:#ffffff3a;color:#fff}
 .cy-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30%;aspect-ratio:1/1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle,#23a35f30,#23a35f0d);border:1.5px solid #23a35f55}.cy-center b{font-size:clamp(13px,2.4vw,20px)}.cy-center span{font-size:clamp(20px,4vw,34px);font-weight:850;color:#23a35f}.cy-center small{opacity:.7;font-size:11px}
 .cy-list{display:none;flex-direction:column;gap:8px}.cy-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;border:1.5px solid #23a35f55;background:#23a35f12;color:inherit;font:inherit;font-weight:700;text-align:left;cursor:pointer}.cy-row span{flex:1}.cy-row em{font-style:normal;opacity:.8}
 .cy-num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#23a35f;color:#fff;font-size:14px;margin-right:6px}.cy-detail p{margin:6px 0 12px;line-height:1.55}
-@media(max-width:720px){.cy-box{display:none}.cy-list{display:flex}}
+@media(max-width:720px){
+/* Keep the accounting cycle circular on phones instead of replacing it with a serial list. */
+.cy-box{display:block;width:min(100%,520px);aspect-ratio:1/1;margin:0 auto 10px;overflow:visible}
+.cy-list{display:none!important}
+.cy-node{width:25%;min-width:0;max-width:118px;padding:5px 4px;gap:4px;border-radius:11px;font-size:clamp(8px,2.35vw,11px);line-height:1.15;justify-content:flex-start;white-space:normal;overflow-wrap:anywhere}
+.cy-node i{flex:0 0 19px;width:19px;height:19px;font-size:10px}
+.cy-center{width:27%;min-width:78px;padding:4px}
+.cy-center b{font-size:clamp(10px,2.8vw,15px);line-height:1.15}
+.cy-center span{font-size:clamp(17px,5vw,26px)}
+.cy-center small{font-size:clamp(7px,1.8vw,9px);line-height:1.15;max-width:90%}
+.cy-detail{scroll-margin-top:12px}
+}
+@media(max-width:390px){.cy-box{width:100%}.cy-node{width:26%;padding:4px 3px;font-size:8px}.cy-node i{flex-basis:17px;width:17px;height:17px;font-size:9px}.cy-center{width:28%;min-width:72px}}
+@media(min-width:721px){.cy-box{display:block}.cy-list{display:none}}
 #lgNameRow.hide,#lgPass2Row.hide,#lgMeterBox.hide,#lgCaps.hide{display:none!important}.lg-meter{height:6px;border-radius:4px;background:#ffffff1f;overflow:hidden;margin:8px 0 2px}.lg-meter i{display:block;height:100%;width:0;transition:width .25s,background .25s}.lg-metert{font-size:12px;color:#b3c2b8;min-height:16px}.lg-caps{display:block;color:#f5b84a;font-size:12px;margin-top:6px}
 .lg-guest{width:100%;margin-top:12px;padding:13px;border-radius:99px;border:1px dashed #ffffff44;background:transparent;color:#dfeee4;font-size:15px;font-weight:700;cursor:pointer}.lg-note{text-align:center;color:#8fa896;font-size:12px;margin:8px 0 0}
 
@@ -123,6 +137,233 @@ input[type=date]::-webkit-calendar-picker-indicator{opacity:.65}
 .panel{box-shadow:0 8px 28px #1639230a}.panel-head h3{letter-spacing:-.2px}
 #chartofaccounts code{font-size:11px;background:var(--surface2);padding:3px 6px;border-radius:6px;color:var(--brand)}
 @media(max-width:600px){#chartofaccounts .cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Advanced dashboard command centre */
+.dash-live{font-size:12px;color:#d2ead9;margin-top:10px}.dash-live i,.channel-row i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#63e39a;margin-right:7px;box-shadow:0 0 0 4px #63e39a22}
+.command-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}.command-tile{display:grid;grid-template-columns:36px 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:center;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;color:var(--text);box-shadow:var(--shadow)}.command-tile>span{grid-row:1/3;width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:var(--brand2);color:var(--brand);font-size:18px}.command-tile b{font-size:12px}.command-tile small{font-size:10px;color:var(--muted)}.command-tile:hover{border-color:var(--brand);transform:translateY(-1px)}
+.dash-split{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-bottom:14px}.chart-legend{display:flex;gap:16px;font-size:11px;color:var(--muted);margin:12px 0}.chart-legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}.legend-income{background:var(--brand)}.legend-expense{background:var(--red)}.month-chart{display:grid;gap:11px}.month-chart-row{display:grid;grid-template-columns:38px minmax(50px,1fr) 90px;gap:9px;align-items:center;font-size:11px}.month-label{color:var(--muted);font-weight:700}.month-bars{display:grid;gap:3px}.month-income,.month-expense{height:7px;min-width:0;border-radius:20px;background:var(--brand)}.month-expense{background:var(--red)}.month-chart-row>b{text-align:right;font-size:10px}.health-equation{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:22px 0 12px}.health-equation>div{min-width:0}.health-equation small{display:block;color:var(--muted);font-size:10px}.health-equation b{font-size:14px;overflow-wrap:anywhere}.health-result{border-radius:10px;padding:10px;font-size:12px;font-weight:750}.health-result.good,.alert-item.good{background:var(--brand2);color:var(--brand)}.health-result.bad,.alert-item.danger{background:var(--redbg);color:var(--red)}.alert-list{display:grid;gap:9px}.alert-item{display:grid;gap:5px;padding:11px;border-radius:11px;background:var(--surface2)}.alert-item b{font-size:12px}.alert-item small{font-size:11px;opacity:.8}.alert-item .btn{justify-self:start}.alert-item.warn{background:#fff5df;color:#88600e}.channel-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:12px}.channel-row:last-of-type{border:0}.channel-row b{font-variant-numeric:tabular-nums}.dash-footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.dash-footer-grid .mini-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}.dash-footer-grid .mini-card span{display:block;color:var(--muted);font-size:10px}.dash-footer-grid .mini-card b{display:block;font-size:20px;margin-top:4px}
+@media(max-width:850px){.command-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dash-split{grid-template-columns:1fr}.dash-footer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.command-tile{padding:9px;grid-template-columns:30px 1fr;column-gap:7px}.command-tile>span{width:29px;height:29px}.month-chart-row{grid-template-columns:30px minmax(40px,1fr) 75px;gap:6px}.health-equation b{font-size:11px}}
+
+
+/* FreshMart Aurora visual system */
+:root{--bg:#f4f6fb;--surface:#ffffff;--surface2:#f7f8fc;--text:#19243a;--muted:#78839a;--line:#e5e9f2;--brand:#635bdb;--brand2:#eeedff;--shadow:0 12px 34px #27345a0d}
+:root[data-accent="emerald"]{--brand:#635bdb;--brand2:#eeedff}
+:root[data-accent="violet"]{--brand:#635bdb;--brand2:#eeedff}
+:root[data-accent="ocean"]{--brand:#168eaa;--brand2:#e2f7fb}
+:root[data-accent="sunset"]{--brand:#d97745;--brand2:#fff0e7}
+:root[data-accent="rose"]{--brand:#c34f86;--brand2:#ffedf5}
+[data-theme="dark"]{--bg:#101522;--surface:#191f31;--surface2:#20283b;--text:#eef1ff;--muted:#a0abc2;--line:#303a52;--brand:#a59cff;--brand2:#302d55;--shadow:0 14px 36px #0003}
+.topbar{background:linear-gradient(112deg,#171d36 0%,#343078 54%,#176f7c 100%)}
+.sidebar,.panel,.metric-card,.mini-card{box-shadow:0 10px 32px #27345a0b;border-color:color-mix(in srgb,var(--line) 86%,transparent)}
+.nav-btn.active{box-shadow:inset 3px 0 0 var(--brand),0 5px 15px #635bdb12}
+.btn.primary{background:linear-gradient(110deg,var(--brand),#8878ee);border-color:transparent;box-shadow:0 5px 14px #635bdb25}
+.dash-hero-pro{background:radial-gradient(ellipse at 84% 8%,#3cc3c0 0,transparent 27%),radial-gradient(ellipse at 15% 100%,#7568e8 0,transparent 40%),linear-gradient(115deg,#171d3a,#343078 58%,#176f7c);border:1px solid #ffffff20;box-shadow:0 18px 42px #28255d26}
+.dash-hero-pro:after{content:'✦';font-size:190px;color:#ffffff0a;right:30%;bottom:-75px}
+.hero-side{display:grid;justify-items:center;gap:10px;min-width:180px;position:relative;z-index:2}.hero-date{font-size:11px;color:#d9e8ff;font-weight:700;text-align:center}.hero-ring{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#72e2d2 0 76%,#ffffff25 76% 100%);position:relative}.hero-ring:before{content:'';position:absolute;inset:8px;border-radius:50%;background:#28305d}.hero-ring div{position:relative;display:grid;text-align:center}.hero-ring b{font-size:29px;line-height:1.1}.hero-ring small{font-size:8px;letter-spacing:.14em;color:#c5d3f5}.hero-status{font-size:10px;color:#d7f9ef;display:flex;align-items:center;gap:6px}.hero-status i{width:7px;height:7px;border-radius:50%;background:#69e5ad;box-shadow:0 0 0 4px #69e5ad25}
+.dash-section-title{margin:19px 0 10px;color:var(--text);font-size:15px}.dash-section-title span{color:var(--muted);font-size:11px;font-weight:600}.pro-kpis .metric-card{border-radius:17px;padding:17px;background:linear-gradient(145deg,var(--surface),var(--surface2))}.pro-kpis .metric-card:nth-child(1) .metric-icon{background:#e8e8ff;color:#6259d7}.pro-kpis .metric-card:nth-child(2) .metric-icon{background:#fff0e5;color:#d47b3d}.pro-kpis .metric-card:nth-child(3) .metric-icon{background:#e1f8f3;color:#168e7a}.pro-kpis .metric-card:nth-child(4) .metric-icon{background:#fce9f2;color:#c34f86}
+.pro-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 15px}.pro-stat{padding:13px 15px;border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:var(--shadow);min-width:0}.pro-stat span{display:block;color:var(--muted);font-size:9px;font-weight:850;letter-spacing:.08em}.pro-stat b{display:block;font-size:18px;margin:6px 0 2px;overflow-wrap:anywhere}.pro-stat small{font-size:10px;color:var(--muted)}
+.pro-commands .command-tile{border-radius:15px;transition:transform .2s,box-shadow .2s,border-color .2s}.pro-commands .command-tile:hover{transform:translateY(-3px);box-shadow:0 12px 25px #635bdb18}.pro-commands .command-tile:nth-child(4n+1)>span{background:#eeedff;color:#635bdb}.pro-commands .command-tile:nth-child(4n+2)>span{background:#e2f7fb;color:#168eaa}.pro-commands .command-tile:nth-child(4n+3)>span{background:#fff0e7;color:#d97745}.pro-commands .command-tile:nth-child(4n)>span{background:#e4f7ef;color:#20966b}
+.pro-panel{border-radius:18px;background:linear-gradient(145deg,var(--surface),var(--surface2))}.pro-panel h3{letter-spacing:-.02em}.month-income{background:linear-gradient(90deg,#635bdb,#9b8df7)}.month-expense{background:linear-gradient(90deg,#ed8b67,#f3b18d)}.health-meter{height:7px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:10px}.health-meter i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#30b98c,#72d8bb)}.chart-footnote,.pro-alert-foot{font-size:10px;color:var(--muted);margin-top:12px;padding-top:9px;border-top:1px solid var(--line)}
+.top-account{margin:11px 0}.top-account>div:first-child{display:flex;justify-content:space-between;gap:10px;font-size:11px;margin-bottom:6px}.top-account b{font-variant-numeric:tabular-nums}.top-track{height:7px;background:var(--line);border-radius:99px;overflow:hidden}.top-track i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#655cdb,#39b8b2)}.activity-stat{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:11px}.activity-stat:last-child{border:0}.activity-stat span{color:var(--muted)}.activity-stat b{font-size:13px}
+@media(max-width:850px){.pro-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-side{min-width:130px}.hero-ring{width:90px;height:90px}}
+@media(max-width:600px){.dash-hero-pro{padding:18px}.hero-side{display:flex;align-items:center;justify-content:space-between;width:100%;min-width:0;margin-top:10px}.hero-ring{width:66px;height:66px}.hero-ring:before{inset:6px}.hero-ring b{font-size:20px}.hero-ring small{font-size:6px}.hero-date{text-align:left}.hero-status{font-size:9px}.pro-stat-grid{gap:7px}.pro-stat{padding:10px}.pro-stat b{font-size:15px}.pro-stat span{font-size:8px}.pro-kpis .metric-card{padding:12px}.pro-kpis .metric-value{font-size:19px}}
+
+/* KFM HARMONY THEME — coordinated forest, sage and warm ivory */
+:root{
+ --bg:#f4f6ef !important;
+ --surface:#ffffff !important;
+ --surface2:#edf2e8 !important;
+ --text:#1d3328 !important;
+ --muted:#718174 !important;
+ --line:#dce6d9 !important;
+ --brand:#276749 !important;
+ --brand2:#e2efe4 !important;
+ --red:#b94b43 !important;
+ --redbg:#fff0eb !important;
+ --gold:#98743a !important;
+ --shadow:0 10px 30px rgba(32,68,48,.08) !important;
+}
+[data-theme="dark"]{
+ --bg:#111d17 !important;
+ --surface:#1a2a21 !important;
+ --surface2:#22362a !important;
+ --text:#edf5ec !important;
+ --muted:#a2b5a5 !important;
+ --line:#304638 !important;
+ --brand:#83b895 !important;
+ --brand2:#294735 !important;
+ --red:#f08b7e !important;
+ --redbg:#432a28 !important;
+ --gold:#d6b66f !important;
+ --shadow:0 12px 34px rgba(0,0,0,.22) !important;
+}
+body{background:var(--bg)!important;color:var(--text)!important}
+header,.topbar,.app-header{background:rgba(255,255,255,.88)!important;backdrop-filter:blur(16px)}
+[data-theme="dark"] header,[data-theme="dark"] .topbar,[data-theme="dark"] .app-header{background:rgba(26,42,33,.9)!important}
+.panel,.card,.metric,.pro-stat,.command-tile{border-color:var(--line)!important;box-shadow:var(--shadow)!important}
+.btn.primary,.btn:not(.light):not(.trans){background:var(--brand)!important;border-color:var(--brand)!important}
+.btn.light{background:#f1f6ed!important;color:#24583d!important}
+.btn.trans{border-color:rgba(255,255,255,.45)!important;color:inherit!important}
+nav button.active,.nav button.active,.sidebar button.active{background:var(--brand2)!important;color:var(--brand)!important}
+
+/* Executive dashboard refinement */
+.dash-hero-pro{
+ background:linear-gradient(120deg,#183f30 0%,#276749 52%,#679579 100%)!important;
+ border:1px solid rgba(255,255,255,.12)!important;
+ border-radius:24px!important;
+ box-shadow:0 18px 42px rgba(31,78,53,.18)!important;
+}
+.dash-hero-pro h2{letter-spacing:-.035em!important}
+.dash-kicker{color:#d4e9d8!important;letter-spacing:.16em!important}
+.hero-ring{border-color:rgba(230,245,232,.55)!important;background:rgba(255,255,255,.10)!important}
+.hero-status{background:rgba(255,255,255,.13)!important;border:1px solid rgba(255,255,255,.18)!important}
+.pro-kpis .metric,.pro-kpis .card{border-radius:18px!important;background:var(--surface)!important}
+.pro-stat-grid{gap:12px!important}
+.pro-stat{border-radius:16px!important;background:linear-gradient(145deg,var(--surface),var(--surface2))!important}
+.command-tile{border-radius:17px!important;transition:transform .18s ease,box-shadow .18s ease!important}
+.command-tile:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(39,103,73,.13)!important}
+.pro-panel{border-radius:20px!important;background:var(--surface)!important}
+.panel-head{border-color:var(--line)!important}
+.month-income,.legend-income{background:#4f9870!important}
+.month-expense,.legend-expense{background:#d5ad68!important}
+.top-track i{background:linear-gradient(90deg,#397a56,#91b99a)!important}
+.channel-row i{background:#6e9d7c!important}
+.health-meter i{background:linear-gradient(90deg,#4f9870,#b4cf9c)!important}
+.harmony-insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0 18px}
+.harmony-insight{padding:17px 18px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,var(--surface),var(--surface2));box-shadow:var(--shadow);min-width:0}
+.harmony-insight-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.09em}
+.harmony-dot{width:9px;height:9px;border-radius:50%;background:#5b9b70;box-shadow:0 0 0 4px rgba(91,155,112,.13)}
+.harmony-dot.gold{background:#c39a56;box-shadow:0 0 0 4px rgba(195,154,86,.14)}
+.harmony-insight>b{display:block;font-size:25px;letter-spacing:-.04em;margin:10px 0 4px}
+.harmony-insight>small{display:block;color:var(--muted);font-size:11px;line-height:1.45}
+.harmony-cash-list{display:grid;gap:13px;margin:12px 0}
+.harmony-cash-row{display:grid;grid-template-columns:65px minmax(50px,1fr) auto;align-items:center;gap:10px;font-size:12px}
+.harmony-cash-row>span{color:var(--muted);font-weight:650}
+.harmony-cash-row>div{height:8px;background:var(--surface2);border-radius:20px;overflow:hidden}
+.harmony-cash-row i{height:100%;display:block;border-radius:20px;background:linear-gradient(90deg,#397a56,#a3c7a6)}
+.harmony-cash-row>b{font-size:12px;font-variant-numeric:tabular-nums}
+.harmony-focus-row{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--line)}
+.harmony-focus-row:last-child{border-bottom:0}
+.focus-icon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--brand2);color:var(--brand);font-weight:800;flex:none}
+.harmony-focus-row>div{display:grid;gap:2px;flex:1;min-width:0}
+.harmony-focus-row>div b{font-size:12px}
+.harmony-focus-row>div small{font-size:10px;color:var(--muted)}
+.harmony-focus-row>strong{font-size:12px;text-align:right}
+@media(max-width:760px){
+ .harmony-insight-grid{grid-template-columns:1fr;gap:9px}
+ .harmony-insight{padding:14px 15px}
+ .harmony-insight>b{font-size:22px}
+ .harmony-cash-row{grid-template-columns:55px minmax(40px,1fr) auto;gap:7px}
+}
+
+
+/* FINAL COLOUR HARMONY FIX: unify header, dashboard hero and workspace */
+:root{
+ --bg:#f4f6ef!important;--surface:#ffffff!important;--surface2:#edf2e8!important;
+ --text:#1d3328!important;--muted:#718174!important;--line:#dce6d9!important;
+ --brand:#276749!important;--brand2:#e2efe4!important;
+}
+body{background:#f4f6ef!important;color:#1d3328!important}
+header,.topbar,.app-header,.main-header,.site-header{
+ background:linear-gradient(110deg,#102c1d 0%,#174d32 58%,#237448 100%)!important;
+ color:#f5fff6!important;
+}
+.dash-hero,.dash-hero-pro,.hero,.dashboard-hero{
+ background:
+ radial-gradient(ellipse at 88% 10%,rgba(150,194,157,.22),transparent 34%),
+ linear-gradient(115deg,#143b2a 0%,#205c3d 58%,#397b55 100%)!important;
+ color:#f5fff6!important;
+ border:1px solid rgba(255,255,255,.12)!important;
+ box-shadow:0 16px 36px rgba(25,65,43,.16)!important;
+}
+.dash-hero h2,.dash-hero-pro h2,.hero h2,.dashboard-hero h2{color:#f7fff7!important}
+.dash-hero p,.dash-hero-pro p,.hero p,.dashboard-hero p{color:#d8eadb!important}
+.dash-kicker,.dash-hero-pro .dash-kicker{color:#b9d9bd!important}
+.dash-hero .btn.light,.dash-hero-pro .btn.light{background:#edf5e9!important;color:#24583d!important;border-color:#edf5e9!important}
+.dash-hero .btn.trans,.dash-hero-pro .btn.trans{background:rgba(255,255,255,.10)!important;color:#fff!important;border-color:rgba(255,255,255,.30)!important}
+header button,.topbar button,.app-header button,.main-header button{
+ border-color:rgba(225,243,228,.24)!important;
+}
+.panel,.card,.metric,.pro-stat,.pro-panel,.harmony-insight{
+ background:var(--surface)!important;border-color:var(--line)!important;
+}
+
+
+/* KFM LOGIN — matched Harmony Forest & Sage identity */
+#authGate{
+ background:
+  radial-gradient(ellipse 65% 55% at 8% 8%,rgba(105,158,119,.34),transparent 62%),
+  radial-gradient(ellipse 55% 55% at 100% 100%,rgba(39,103,73,.30),transparent 64%),
+  linear-gradient(135deg,#102c1d 0%,#173e2b 52%,#0d2418 100%) !important;
+ color:#f4f7ef!important;
+}
+#authGate:before{
+ content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;
+ background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+ background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+#authGate .lg-wrap{position:relative;z-index:1;width:min(100%,470px);gap:20px}
+#authGate .lg-top{padding:0 4px 2px}
+#authGate .lg-brand{font-size:18px;letter-spacing:-.025em;color:#f6f8f2}
+#authGate .lg-brand small{color:#b6cbb9;font-size:12px;margin-top:5px;letter-spacing:.02em}
+#authGate .lg-lang button{border:1px solid rgba(226,239,228,.24);background:rgba(226,239,228,.08);color:#dce9dc;border-radius:999px;padding:8px 13px}
+#authGate .lg-lang button.on{background:#e2efe4;color:#24543a;border-color:#e2efe4;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+#authGate .lg-card{
+ background:linear-gradient(155deg,rgba(255,255,255,.98),rgba(244,247,239,.97))!important;
+ color:#1d3328!important;border:1px solid rgba(226,239,228,.8)!important;
+ border-radius:28px!important;padding:clamp(25px,5vw,40px)!important;
+ box-shadow:0 28px 85px rgba(0,0,0,.30)!important;
+ -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)
+}
+#authGate .lg-card h2{color:#1d3328!important;font-size:clamp(30px,7vw,38px);letter-spacing:-.045em}
+#authGate .lg-sub{color:#718174!important;line-height:1.6}
+#authGate .lg-l{color:#304b39!important;font-size:13px;font-weight:800;letter-spacing:.015em}
+#authGate .lg-in{background:#f7f9f4!important;border:1px solid #dce6d9!important;border-radius:14px!important;min-height:54px;box-shadow:inset 0 1px 2px rgba(28,61,39,.025)}
+#authGate .lg-in:focus-within{border-color:#6b9b78!important;box-shadow:0 0 0 4px rgba(91,145,104,.14)!important}
+#authGate .lg-in>svg{color:#718b76!important}
+#authGate .lg-in input{color:#1d3328!important}
+#authGate .lg-in input::placeholder{color:#9aa99b!important}
+#authGate .lg-eye{color:#718b76!important}
+#authGate .lg-row{margin:16px 0 20px}
+#authGate .lg-chk{color:#607365!important;font-size:13px}
+#authGate .lg-chk input{border-color:#bdcdbf!important;background:#fff!important}
+#authGate .lg-chk input:checked{background:#276749!important;border-color:#276749!important}
+#authGate .lg-link{color:#397653!important;font-weight:750}
+#authGate .lg-link:hover{color:#173e2b!important}
+#authGate .lg-btn{
+ min-height:58px!important;border:0!important;border-radius:15px!important;
+ background:linear-gradient(105deg,#205c3d,#397b55)!important;
+ box-shadow:0 9px 20px rgba(39,103,73,.22)!important;
+ justify-content:flex-start;padding:6px 20px 6px 7px!important
+}
+#authGate .lg-ico{border-radius:11px!important;background:rgba(255,255,255,.18)!important}
+#authGate .lg-or{color:#879589!important;font-size:12px;margin:21px 0}
+#authGate .lg-or:before,#authGate .lg-or:after{background:#dce6d9!important}
+#authGate .lg-google{
+ background:#fff!important;color:#304b39!important;border:1px solid #dce6d9!important;
+ border-radius:14px!important;min-height:54px!important;font-size:14px!important;
+ box-shadow:0 3px 10px rgba(29,51,40,.04)
+}
+#authGate .lg-google:hover{background:#f7faf5!important;border-color:#b8cdbb!important}
+#authGate .lg-guest{
+ width:100%;min-height:52px;border-radius:14px!important;
+ background:#e8f1e7!important;border:1px solid #d4e4d4!important;
+ color:#24543a!important;font-weight:800!important
+}
+#authGate .lg-note{color:#829184!important;font-size:11px!important;text-align:center;line-height:1.5}
+#authGate .lg-foot{color:#718174!important;font-size:13px!important;margin:18px 0 0!important}
+#authGate .lg-foot .strong{color:#276749!important}
+#authGate .auth-status{color:#a3473e!important;font-size:12px!important;line-height:1.5}
+#authGate .lg-caps,#authGate .lg-metert{color:#98743a!important}
+@media(max-width:480px){
+ #authGate{padding:15px!important}
+ #authGate .lg-wrap{gap:15px}
+ #authGate .lg-card{border-radius:23px!important;padding:23px 20px!important}
+ #authGate .lg-brand{font-size:16px}
+ #authGate .lg-lang button{padding:7px 10px;font-size:11px}
+}
+
 </style>
 <link rel="icon" type="image/png" href="data:image/png;base64,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">
 <meta name="theme-color" content="#187344">
@@ -275,22 +516,51 @@ function pageHead(title,sub,action=''){return `<div class="pagehead"><div><h2>${
 function table(headers,rows,empty='No records yet.'){return `<div class="table-wrap"><table><thead><tr>${headers.map((h,i)=>`<th class="${i>0&&h.startsWith('num:')?'num':''}">${h.replace(/^num:/,'')}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="empty">${empty}</td></tr>`}</tbody></table></div>`}
 function metric(label,value,icon,foot=''){return `<div class="metric-card"><div class="metric-top"><span>${label}</span><span class="metric-icon">${icon}</span></div><div class="metric-value">${value}</div><div class="metric-foot">${foot}</div></div>`}
 function renderDashboard(){
- const rev=revenueTotal(),exp=expenseTotal(),cash=total('ca'),asset=assetTotal(),liab=liabilityTotal(),eq=equityTotal(),sorted=[...entries].sort((a,b)=>b.date.localeCompare(a.date)||String(b.id).localeCompare(String(a.id))).slice(0,7);
- const recent=sorted.map(e=>`<tr><td>${fmtDate(e.date)}</td><td>${esc(e.desc)}</td><td>${esc(e.note||'—')}</td><td class="num">${money(Object.values(e.v||{}).reduce((s,v)=>s+Math.abs(v),0)/2)}</td></tr>`).join('');
- const empty=entries.length===0 && !(extra.products||[]).length && !(extra.debtors||[]).length && !(extra.receipts||[]).length;
- const email=(fbUser&&fbUser.email)||'';const first=(email.split('@')[0]||'there').split(/[._-]/)[0];
- const setup=[['Add your first transaction','Record income, expenses or a transfer','entry',entries.length>0],['Set up your accounts','Review cash, bKash, Nagad and savings','balance',false],['Add inventory','Track products and stock levels','inventory',(extra.products||[]).length>0],['Create a backup','Download a copy of your business data','settings',false]];
- $('dashboard').innerHTML=`<div class="dash-hero"><div class="dash-hero-row"><div><div class="dash-kicker">Kangaroo FreshMart · Business workspace</div><h2>${empty?'Welcome to your new dashboard':`Welcome back${email?'':'!' }${email?' , '+esc(first.charAt(0).toUpperCase()+first.slice(1)) : ''}`}</h2><p>${empty?'Your workspace is ready. Add your first transaction to begin building your live financial overview.':'Your business overview is ready. Keep an eye on cash, activity and financial health from one place.'}</p><div class="dash-hero-actions"><button class="btn light" data-goto="entry">＋ Add transaction</button><button class="btn trans" data-goto="reports">▥ View reports</button></div></div><div style="position:relative;z-index:1"><div class="dash-kicker">${new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'short',year:'numeric'})}</div><div style="font-size:12px;color:#c7e6d0;margin-top:7px">${empty?'Start simple. Grow confidently.':'Live overview · Account totals'}</div></div></div></div>
- <div class="quick-grid"><button class="quick-action" data-goto="entry"><span class="quick-icon">＋</span><span><b>New transaction</b><small>Income or expense</small></span></button><button class="quick-action" data-goto="receipts"><span class="quick-icon">▧</span><span><b>Payment receipt</b><small>Create a receipt</small></span></button><button class="quick-action" data-goto="inventory"><span class="quick-icon">▦</span><span><b>Manage inventory</b><small>Products and stock</small></span></button><button class="quick-action" data-goto="vouchers"><span class="quick-icon">❖</span><span><b>Print voucher</b><small>Debit or credit</small></span></button><button class="quick-action" data-goto="adjusting"><span class="quick-icon">⚖</span><span><b>Adjusting entries</b><small>Accruals and corrections</small></span></button><button class="quick-action" data-goto="cashjournal"><span class="quick-icon">⇅</span><span><b>Cash in / out</b><small>Cash movement journal</small></span></button><button class="quick-action" data-goto="chartofaccounts"><span class="quick-icon">▦</span><span><b>Chart of accounts</b><small>Manage account list</small></span></button></div>
- ${empty?`<div class="empty-dashboard"><h3>✨ Your workspace is clean and ready</h3><p>No transactions have been added yet. Follow these quick steps to get your accounts working for you.</p><div class="setup-grid">${setup.map((x,i)=>`<div class="setup-item"><span class="setup-check">${x[3]?'✓':i+1}</span><div><b>${x[0]}</b><small>${x[1]}</small><button class="auth-link" style="padding:5px 0 0" data-goto="${x[2]}">${x[3]?'Completed':'Get started →'}</button></div></div>`).join('')}</div></div>`:''}
- <div class="dash-mini"><div class="mini-card"><span>Transactions recorded</span><b>${entries.length}</b></div><div class="mini-card"><span>Products in inventory</span><b>${(extra.products||[]).length}</b></div><div class="mini-card"><span>Pending debtors</span><b>${(extra.debtors||[]).length}</b></div></div>
- <div class="account-orbit"><div class="orbit-ring"><div class="orbit-center"><b>${money(cash)}</b><small>Cash balance</small></div></div><div><div class="panel-head"><h3>Account cycle</h3><span class="pill">Live balances</span></div><div class="orbit-accounts">${[['ca','Cash'],['bk','bKash'],['ng','Nagad'],['up','Upay']].map(([k,n])=>`<div class="orbit-account"><i class="orbit-dot"></i><span>${n}</span><b>${money(total(k))}</b></div>`).join('')}</div><div class="inline-note">Compare your main payment accounts at a glance.</div><div class="actions"><button class="btn small" data-goto="accounts">Manage accounts →</button><button class="btn small" data-goto="cashbook">Open cashbook</button></div></div></div>
- <div class="cards">${metric('Total assets',money(asset),'◈','Cash, wallets, savings and debtors')}${metric('Liabilities',money(liab),'⇄','Creditors and loans')}${metric('Cash balance',money(cash),'৳','Cash account')}${metric('Net income',money(rev-exp),'↗',`${money(rev)} income · ${money(exp)} expenses`)}</div>
- <div class="two-col"><div class="panel"><div class="panel-head"><h3>Recent activity</h3><button class="btn small" data-goto="ledger">View ledger →</button></div>${table(['Date','Description','Type','num:Amount'],recent,'No transactions yet. Your new activity will appear here.')}</div>
- <div class="panel"><div class="panel-head"><h3>Account balances</h3><span class="pill">Live totals</span></div><div class="bars">${ASSET.map(([k,n])=>{let v=total(k);let max=Math.max(1,...ASSET.map(a=>Math.abs(total(a[0]))));return `<div><div class="bar-label"><span>${n}</span><b>${money(v)}</b></div><div class="bar"><i style="width:${Math.min(100,Math.abs(v)/max*100)}%"></i></div></div>`}).join('')}</div><div class="balance-row"><span class="muted">Liabilities + equity</span><b>${money(liab+eq)}</b></div></div></div>
- <div class="panel"><div class="panel-head"><h3>Financial health</h3><span class="pill ${Math.abs(asset-liab-eq)<.005?'':'red'}">${Math.abs(asset-liab-eq)<.005?'Balanced':'Needs review'}</span></div><p class="muted small">Your dashboard updates as you record transactions. Use Reports and Financial statements for deeper analysis, and export regular backups to protect your records.</p><div class="actions"><button class="btn" data-goto="balance">⚖ Balance sheet</button><button class="btn" data-goto="statements">§ Financial statements</button><button class="btn" data-goto="settings">⚙ Workspace settings</button></div></div>`;
-}
+ const rev=revenueTotal(),exp=expenseTotal(),cash=total('ca'),asset=assetTotal(),liab=liabilityTotal(),eq=equityTotal(),profit=rev-exp;
+ const sorted=[...entries].sort((a,b)=>b.date.localeCompare(a.date)||String(b.id).localeCompare(String(a.id)));
+ const recent=sorted.slice(0,7).map(e=>`<tr><td>${fmtDate(e.date)}</td><td>${esc(e.desc)}</td><td>${esc(e.note||'—')}</td><td class="num">${money(Object.values(e.v||{}).reduce((s,v)=>s+Math.abs(Number(v)||0),0)/2)}</td></tr>`).join('');
+ const products=extra.products||[],debtors=extra.debtors||[],creditors=extra.creditors||[];
+ const low=products.filter(p=>Number(p.qty)<=Number(p.low||0));
+ const today=new Date().toISOString().slice(0,10),overdue=debtors.filter(d=>d.due&&d.due<today),overdueSum=overdue.reduce((s,d)=>s+Number(d.amount||0),0);
+ const thisMonth=today.slice(0,7),monthEntries=entries.filter(e=>(e.date||'').slice(0,7)===thisMonth),mIncome=monthEntries.filter(e=>e.note==='Revenue').reduce((s,e)=>s+Math.max(0,Number(e.v?.eq||0)),0),mExpense=monthEntries.filter(e=>e.note==='Expenses').reduce((s,e)=>s+Math.abs(Number(e.v?.eq||0)),0),mNet=mIncome-mExpense;
+ const monthKeys=[];for(let i=5;i>=0;i--){const d=new Date();d.setDate(1);d.setMonth(d.getMonth()-i);monthKeys.push(d.toISOString().slice(0,7));}
+ const monthly=monthKeys.map(m=>{const income=entries.filter(e=>(e.date||'').slice(0,7)===m&&e.note==='Revenue').reduce((s,e)=>s+Math.max(0,Number(e.v?.eq||0)),0);const expense=entries.filter(e=>(e.date||'').slice(0,7)===m&&e.note==='Expenses').reduce((s,e)=>s+Math.abs(Number(e.v?.eq||0)),0);return {m,income,expense,net:income-expense};});
+ const maxMonth=Math.max(1,...monthly.flatMap(x=>[x.income,x.expense]));
+ const monthRows=monthly.map(x=>`<div class="month-chart-row"><div class="month-label">${new Date(x.m+'-01T00:00:00').toLocaleDateString('en',{month:'short'})}</div><div class="month-bars"><div class="month-income" style="width:${x.income/maxMonth*100}%" title="Income ${money(x.income)}"></div><div class="month-expense" style="width:${x.expense/maxMonth*100}%" title="Expense ${money(x.expense)}"></div></div><b class="${x.net>=0?'positive':'negative'}">${money(x.net)}</b></div>`).join('');
+ const health=Math.abs(asset-liab-eq)<.005,empty=entries.length===0&&!products.length&&!debtors.length;
+ const alerts=[];if(!health)alerts.push(`<div class="alert-item danger"><b>⚠ Accounting equation needs review</b><small>Assets do not equal liabilities plus equity. Check Trial Balance and journal entries.</small><button class="btn small" data-goto="trialbalance">Review trial balance</button></div>`);if(overdue.length)alerts.push(`<div class="alert-item warn"><b>◷ ${overdue.length} overdue debtor${overdue.length===1?'':'s'} · ${money(overdueSum)}</b><small>Follow up on outstanding customer balances.</small><button class="btn small" data-goto="debtors">View debtors</button></div>`);if(low.length)alerts.push(`<div class="alert-item warn"><b>▦ ${low.length} low-stock product${low.length===1?'':'s'}</b><small>${low.slice(0,3).map(p=>esc(p.name)).join(', ')}${low.length>3?'…':''}</small><button class="btn small" data-goto="inventory">Review inventory</button></div>`);if(!alerts.length)alerts.push(`<div class="alert-item good"><b>✓ No urgent issues detected</b><small>Keep posting transactions and reviewing your reports regularly.</small></div>`);
+ const margin=rev?profit/rev*100:0,avg=entries.length?entries.reduce((s,e)=>s+Object.values(e.v||{}).reduce((a,v)=>a+Math.abs(Number(v)||0),0)/2,0)/entries.length:0;
+ const prevDate=new Date();prevDate.setDate(1);prevDate.setMonth(prevDate.getMonth()-1);const prevKey=prevDate.toISOString().slice(0,7);
+ const prevEntries=entries.filter(e=>(e.date||'').slice(0,7)===prevKey);
+ const pIncome=prevEntries.filter(e=>e.note==='Revenue').reduce((s,e)=>s+Math.max(0,Number(e.v?.eq||0)),0);
+ const pExpense=prevEntries.filter(e=>e.note==='Expenses').reduce((s,e)=>s+Math.abs(Number(e.v?.eq||0)),0);
+ const pct=(now,before)=>before?((now-before)/Math.abs(before))*100:(now?100:0);
+ const incomeChange=pct(mIncome,pIncome),expenseChange=pct(mExpense,pExpense);
+ const cashAccounts=[['Cash','ca'],['bKash','bk'],['Nagad','ng'],['Upay','up'],['Savings','sv']].map(([name,key])=>({name,value:total(key)}));
+ const cashTotal=cashAccounts.reduce((a,x)=>a+x.value,0);
+ const cashMax=Math.max(1,...cashAccounts.map(x=>Math.abs(x.value)));
+ const cashMix=cashAccounts.map(x=>`<div class="harmony-cash-row"><span>${x.name}</span><div><i style="width:${Math.abs(x.value)/cashMax*100}%"></i></div><b>${money(x.value)}</b></div>`).join('');
+ const netLabel=mNet>=0?'Positive':'Negative';
 
+ const topAccounts=ALL.map(([k,n])=>({name:n,value:Math.abs(total(k))})).filter(x=>x.value>0).sort((a,b)=>b.value-a.value).slice(0,5),topMax=Math.max(1,...topAccounts.map(x=>x.value));
+ const topRows=topAccounts.map(x=>`<div class="top-account"><div><span>${esc(x.name)}</span><b>${money(x.value)}</b></div><div class="top-track"><i style="width:${x.value/topMax*100}%"></i></div></div>`).join('')||'<p class="muted small">Account balances will appear after posting entries.</p>';
+ const email=(fbUser&&fbUser.email)||'',first=(email.split('@')[0]||'there').split(/[._-]/)[0];
+ $('dashboard').innerHTML=`<div class="dash-hero dash-hero-pro"><div class="dash-hero-row"><div><div class="dash-kicker">KANGAROO FRESHMART · FINANCE STUDIO</div><h2>${empty?'Welcome to your business command centre':`Good ${new Date().getHours()<12?'morning':new Date().getHours()<18?'afternoon':'evening'}${email?', '+esc(first.charAt(0).toUpperCase()+first.slice(1)):''}`}</h2><p>${empty?'Start by recording your first transaction. Your financial workspace will build automatically.':'Your business at a glance — performance, cash position, stock health and financial controls in one place.'}</p><div class="dash-hero-actions"><button class="btn light" data-goto="entry">＋ New transaction</button><button class="btn trans" data-goto="reports">▥ Financial reports</button><button class="btn trans" onclick="window.print()">⎙ Print overview</button></div></div><div class="hero-side"><div class="hero-date">${new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</div><div class="hero-ring"><div><b>${entries.length}</b><small>POSTINGS</small></div></div><span class="hero-status"><i></i> ${fbUser?'Cloud account':'Workspace'} · ${health?'Balanced':'Review needed'}</span></div></div></div>
+ <div class="dash-section-title">Your financial snapshot <span>· BDT</span></div><div class="cards pro-kpis">${metric('Total assets',money(asset),'◈','Your recorded resources')}${metric('Total liabilities',money(liab),'⇄','Loans and payables')}${metric('Cash balance',money(cash),'৳','Cash account only')}${metric('Net profit / (loss)',money(profit),profit>=0?'↗':'↘',`${money(rev)} income · ${money(exp)} expenses`)}</div>
+ <div class="pro-stat-grid"><div class="pro-stat"><span>MONTH-TO-DATE INCOME</span><b>${money(mIncome)}</b><small>Revenue posted this month</small></div><div class="pro-stat"><span>MONTH-TO-DATE EXPENSE</span><b>${money(mExpense)}</b><small>Expenses posted this month</small></div><div class="pro-stat"><span>MONTH-TO-DATE NET</span><b class="${mNet>=0?'positive':'negative'}">${money(mNet)}</b><small>Income less expenses</small></div><div class="pro-stat"><span>AVERAGE POSTING</span><b>${money(avg)}</b><small>Average per transaction</small></div></div>
+ <div class="harmony-insight-grid">
+ <div class="harmony-insight"><div class="harmony-insight-top"><span>INCOME VS LAST MONTH</span><span class="harmony-dot"></span></div><b class="${incomeChange>=0?'positive':'negative'}">${incomeChange>=0?'↑':'↓'} ${Math.abs(incomeChange).toFixed(1)}%</b><small>${money(pIncome)} previous month · ${money(mIncome)} this month</small></div>
+ <div class="harmony-insight"><div class="harmony-insight-top"><span>EXPENSE VS LAST MONTH</span><span class="harmony-dot gold"></span></div><b class="${expenseChange<=0?'positive':'negative'}">${expenseChange>=0?'↑':'↓'} ${Math.abs(expenseChange).toFixed(1)}%</b><small>${money(pExpense)} previous month · ${money(mExpense)} this month</small></div>
+ <div class="harmony-insight"><div class="harmony-insight-top"><span>NET RESULT THIS MONTH</span><span class="harmony-dot"></span></div><b class="${mNet>=0?'positive':'negative'}">${netLabel}</b><small>${money(mNet)} after recorded income and expenses</small></div>
+ </div>
+ <div class="command-grid pro-commands"><button class="command-tile" data-goto="entry"><span>＋</span><b>Record entry</b><small>Income · expense · transfer</small></button><button class="command-tile" data-goto="journal"><span>▤</span><b>Journal</b><small>Review journal postings</small></button><button class="command-tile" data-goto="trialbalance"><span>⚖</span><b>Trial balance</b><small>Check debit and credit</small></button><button class="command-tile" data-goto="balance"><span>▥</span><b>Balance sheet</b><small>Financial position</small></button><button class="command-tile" data-goto="receipts"><span>▧</span><b>Receipts</b><small>Customer payment proof</small></button><button class="command-tile" data-goto="inventory"><span>▦</span><b>Inventory</b><small>Stock and valuation</small></button><button class="command-tile" data-goto="adjusting"><span>✎</span><b>Adjustments</b><small>Accruals and corrections</small></button><button class="command-tile" data-goto="settings"><span>⚙</span><b>Settings & backup</b><small>Protect your records</small></button></div>
+ <div class="dash-split"><div class="panel pro-panel"><div class="panel-head"><div><h3>Performance overview</h3><small class="muted">Income and expenses · last 6 months</small></div><span class="pill">৳ BDT</span></div><div class="chart-legend"><span><i class="legend-income"></i> Income</span><span><i class="legend-expense"></i> Expenses</span></div><div class="month-chart">${monthRows}</div><div class="chart-footnote">Net result for each month is shown at the right.</div></div><div class="panel pro-panel"><div class="panel-head"><h3>Financial health</h3><span class="pill ${health?'':'red'}">${health?'Balanced':'Attention'}</span></div><div class="health-equation"><div><small>Assets</small><b>${money(asset)}</b></div><span>−</span><div><small>Liabilities + Equity</small><b>${money(liab+eq)}</b></div></div><div class="health-result ${health?'good':'bad'}">${health?'✓ Accounting equation balances':'⚠ Difference: '+money(asset-liab-eq)}</div><div class="health-meter"><i style="width:${health?100:Math.max(8,Math.min(95,100-Math.abs(asset-liab-eq)/(Math.abs(asset)+1)*100))}%"></i></div><div class="actions"><button class="btn small" data-goto="trialbalance">Trial balance</button><button class="btn small" data-goto="statements">Statements</button></div></div></div>
+ <div class="dash-split"><div class="panel pro-panel"><div class="panel-head"><div><h3>Action centre</h3><small class="muted">Items that may need your attention</small></div><span class="pill">${alerts.length} checks</span></div><div class="alert-list">${alerts.join('')}</div><div class="pro-alert-foot">${overdue.length} overdue · ${low.length} low-stock · ${health?'Ledger equation OK':'Ledger review needed'}</div></div><div class="panel pro-panel"><div class="panel-head"><h3>Payment channels</h3><button class="btn small" data-goto="cashbook">Open cashbook →</button></div>${[['ca','Cash'],['bk','bKash'],['ng','Nagad'],['up','Upay'],['sv','Savings']].map(([k,n])=>`<div class="channel-row"><span><i></i>${n}</span><b>${money(total(k))}</b></div>`).join('')}<div class="inline-note">Based on recorded ledger entries.</div></div></div>
+ <div class="dash-split"><div class="panel pro-panel"><div class="panel-head"><h3>Largest account balances</h3><button class="btn small" data-goto="accounts">All accounts →</button></div><div class="top-account-list">${topRows}</div></div><div class="panel pro-panel"><div class="panel-head"><h3>Business activity</h3><span class="pill">Live totals</span></div><div class="activity-stat"><span>Transactions posted</span><b>${entries.length}</b></div><div class="activity-stat"><span>Products tracked</span><b>${products.length}</b></div><div class="activity-stat"><span>Debtor accounts</span><b>${debtors.length}</b></div><div class="activity-stat"><span>Creditor accounts</span><b>${creditors.length}</b></div><div class="activity-stat"><span>Low-stock alerts</span><b class="${low.length?'negative':'positive'}">${low.length}</b></div><div class="activity-stat"><span>Profit margin</span><b class="${margin>=0?'positive':'negative'}">${margin.toFixed(1)}%</b></div></div></div>
+ <div class="dash-split"><div class="panel pro-panel harmony-cash-panel"><div class="panel-head"><div><h3>Cash position by channel</h3><small class="muted">Balances from your ledger accounts</small></div><span class="pill">Total ${money(cashTotal)}</span></div><div class="harmony-cash-list">${cashMix}</div><div class="inline-note">Channel totals are based on the current account balances.</div></div><div class="panel pro-panel harmony-focus-panel"><div class="panel-head"><div><h3>Executive focus</h3><small class="muted">A quick view of business priorities</small></div><span class="pill">Today</span></div><div class="harmony-focus-row"><span class="focus-icon">↗</span><div><b>Profit margin</b><small>Net profit as a share of revenue</small></div><strong class="${margin>=0?'positive':'negative'}">${margin.toFixed(1)}%</strong></div><div class="harmony-focus-row"><span class="focus-icon">▦</span><div><b>Stock attention</b><small>Products at or below reorder level</small></div><strong>${low.length}</strong></div><div class="harmony-focus-row"><span class="focus-icon">◷</span><div><b>Collections follow-up</b><small>Overdue customer balances</small></div><strong>${money(overdueSum)}</strong></div><div class="harmony-focus-row"><span class="focus-icon">▤</span><div><b>Posting volume</b><small>Average value per transaction</small></div><strong>${money(avg)}</strong></div></div></div>
+ <div class="panel pro-panel"><div class="panel-head"><div><h3>Recent activity</h3><small class="muted">Latest 7 posted transactions</small></div><button class="btn small" data-goto="ledger">Open full ledger →</button></div>${table(['Date','Description','Category','num:Amount'],recent,'No transactions yet. New postings will appear here.')}</div>
+ <p class="inline-note">Dashboard figures are calculated from records currently stored in this workspace. Verify the Trial Balance and source documents before formal reporting.</p>`;
+}
 function opts(list,selected){return list.map(a=>`<option value="${a[0]}" ${a[0]===selected?'selected':''}>${a[1]}</option>`).join('')}
 function renderEntry(){const accounts=ALL;
 $('entry').innerHTML=pageHead('New entry','Record a transaction with debit and credit sides','<button class="btn" data-goto="adjusting">⚖ Create adjusting entry →</button>')+`<div class="panel"><div class="panel-head"><h3>Transaction details</h3><span class="pill">Double-entry</span></div><form id="entryForm"><div class="grid-form">
@@ -466,12 +736,23 @@ const xe=s=>String(s).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'').re
 const colL=i=>{let s='';for(i++;i>0;i=Math.floor((i-1)/26))s=String.fromCharCode(65+(i-1)%26)+s;return s};
 function numify(v){if(typeof v==='number')return v;const s=String(v).trim();return /^-?৳?[\d,]*\d(\.\d+)?$/.test(s)&&!/^0\d/.test(s)?Number(s.replace(/[৳,]/g,'')):v}
 function buildXlsx(sheets){const names=[];sheets=sheets.map(([n,r],i)=>{let b=String(n||'Sheet'+(i+1)).replace(/[\\\/?*\[\]:]/g,'').trim().slice(0,28)||'Sheet'+(i+1),x=b,k=2;while(names.includes(x.toLowerCase()))x=b+' '+k++;names.push(x.toLowerCase());return[x,r]});
-const sx=r=>`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" state="frozen"/></sheetView></sheetViews><cols><col min="1" max="30" width="18" customWidth="1"/></cols><sheetData>${r.map((row,y)=>`<row r="${y+1}">${row.map((v,x)=>{v=numify(v);if(v===''||v==null)return'';const a=colL(x)+(y+1);return typeof v==='number'&&isFinite(v)?`<c r="${a}"><v>${v}</v></c>`:`<c r="${a}" t="inlineStr"><is><t xml:space="preserve">${xe(v)}</t></is></c>`}).join('')}</row>`).join('')}</sheetData></worksheet>`;
+const sx=(r)=>{const maxCols=Math.max(1,...r.map(x=>x.length));const widths=Array.from({length:maxCols},(_,i)=>Math.min(34,Math.max(12,...r.slice(0,80).map(row=>String(row[i]??'').length+2))));const last=colL(maxCols-1);
+const rows=r.map((row,y)=>`<row r="${y+1}"${y===0?' ht="30" customHeight="1"':''}>${row.map((v,x)=>{v=numify(v);if(v===''||v==null)return'';const a=colL(x)+(y+1),style=y===0?1:(typeof v==='number'?3:(y%2===0?2:0));return typeof v==='number'&&isFinite(v)?`<c r="${a}" s="${style}"><v>${v}</v></c>`:`<c r="${a}" s="${style}" t="inlineStr"><is><t xml:space="preserve">${xe(v)}</t></is></c>`}).join('')}</row>`).join('');
+return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetViews><sheetView showGridLines="0" workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><cols>${widths.map((w,i)=>`<col min="${i+1}" max="${i+1}" width="${w}" customWidth="1"/>`).join('')}</cols><sheetData>${rows}</sheetData>${r.length>1?`<autoFilter ref="A1:${last}${r.length}"/>`:''}<pageMargins left="0.25" right="0.25" top="0.5" bottom="0.5" header="0.2" footer="0.2"/></worksheet>`};
 const H='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>',R='http://schemas.openxmlformats.org/officeDocument/2006/relationships';
-return zipStore([['[Content_Types].xml',H+'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'+sheets.map((s,i)=>`<Override PartName="/xl/worksheets/sheet${i+1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join('')+'</Types>'],
+const styles=H+`<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+<numFmts count="1"><numFmt numFmtId="164" formatCode="#,##0.00;[Red](#,##0.00);-"/></numFmts>
+<fonts count="3"><font><sz val="11"/><name val="Aptos"/></font><font><b/><color rgb="FFFFFFFF"/><sz val="11"/><name val="Aptos Display"/></font><font><b/><color rgb="FF24543A"/><sz val="11"/><name val="Aptos"/></font></fonts>
+<fills count="5"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF24543A"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFEAF2E8"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFF6F8F2"/><bgColor indexed="64"/></patternFill></fill></fills>
+<borders count="2"><border><left/><right/><top/><bottom/><diagonal/></border><border><left style="thin"><color rgb="FFDCE6D9"/></left><right style="thin"><color rgb="FFDCE6D9"/></right><top style="thin"><color rgb="FFDCE6D9"/></top><bottom style="thin"><color rgb="FFDCE6D9"/></bottom><diagonal/></border></borders>
+<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
+<cellXfs count="4"><xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf><xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center" horizontal="center" wrapText="1"/></xf><xf numFmtId="0" fontId="0" fillId="3" borderId="1" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf><xf numFmtId="164" fontId="0" fillId="4" borderId="1" xfId="0" applyNumberFormat="1" applyAlignment="1"><alignment vertical="center" horizontal="right"/></xf></cellXfs>
+<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`;
+return zipStore([['[Content_Types].xml',H+'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>'+sheets.map((s,i)=>`<Override PartName="/xl/worksheets/sheet${i+1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join('')+'</Types>'],
 ['_rels/.rels',H+`<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="${R}/officeDocument" Target="xl/workbook.xml"/></Relationships>`],
-['xl/workbook.xml',H+`<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="${R}"><sheets>${sheets.map((s,i)=>`<sheet name="${xe(s[0])}" sheetId="${i+1}" r:id="rId${i+1}"/>`).join('')}</sheets></workbook>`],
-['xl/_rels/workbook.xml.rels',H+`<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${sheets.map((s,i)=>`<Relationship Id="rId${i+1}" Type="${R}/worksheet" Target="worksheets/sheet${i+1}.xml"/>`).join('')}</Relationships>`]
+['xl/workbook.xml',H+`<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="${R}"><bookViews><workbookView/></bookViews><sheets>${sheets.map((s,i)=>`<sheet name="${xe(s[0])}" sheetId="${i+1}" r:id="rId${i+1}"/>`).join('')}</sheets></workbook>`],
+['xl/_rels/workbook.xml.rels',H+`<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${sheets.map((s,i)=>`<Relationship Id="rId${i+1}" Type="${R}/worksheet" Target="worksheets/sheet${i+1}.xml"/>`).join('')}<Relationship Id="rId${sheets.length+1}" Type="${R}/styles" Target="styles.xml"/></Relationships>`],
+['xl/styles.xml',styles]
 ].concat(sheets.map((s,i)=>[`xl/worksheets/sheet${i+1}.xml`,sx(s[1])])))}
 function toCsv(rows){return '\ufeff'+rows.map(r=>r.map(v=>{v=String(v??'');return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}).join(',')).join('\r\n')}
 function pageSheets(id){const out=[],cl=t=>t.textContent.trim().replace(/\s+/g,' ');
@@ -731,7 +1012,7 @@ const node=(s,i)=>{const[x,y]=pos(i),st=S[s.n][0];return`<button class="cy-node 
 const arrows=CY.map((s,i)=>{const[x,y,a]=pos(i+.5);return`<g transform="translate(${x} ${y}) rotate(${a+90})"><path d="M-1.7 -1.3 L1.7 0 L-1.7 1.3z"/></g>`}).join('');
 const sel=CY[cySel-1],st=S[sel.n],inl=sel.inl==='work'?cyWork(d):sel.inl==='close'?cyClose(d):sel.inl==='post'?cyPost(d):'';
 $('cycle').innerHTML=pageHead(T7('Accounting cycle','হিসাবচক্র'),T7('The 10 steps of bookkeeping, live from your own data','হিসাব রাখার ১০টি ধাপ — আপনার নিজের তথ্য থেকে সরাসরি'),`<button class="btn no-print" data-lgt="1">বাংলা / English</button><button class="btn no-print" data-print="cycle">⎙ ${T7('Print','প্রিন্ট')}</button>`)+
-`<div class="panel"><div class="cy-box"><svg class="cy-ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="${R}"/>${arrows}</svg>${CY.map(node).join('')}<div class="cy-center"><b>${T7('Accounting cycle','হিসাবচক্র')}</b><span>${pn(10)}/${pn(10)}</span><small>${T7('steps included · live status below','১০টি ধাপ অন্তর্ভুক্ত · নিচে লাইভ অবস্থা')}</small></div></div>
+`<div class="panel"><div class="cy-box"><svg class="cy-ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="${R}"/>${arrows}</svg>${CY.map(node).join('')}<div class="cy-center"><b>${T7('Accounting cycle','হিসাবচক্র')}</b><span>${pn(ok)}/${pn(10)}</span><small>${T7('steps completed · live status below','সম্পন্ন ধাপ · নিচে লাইভ অবস্থা')}</small></div></div>
 <div class="cy-list">${CY.map(s=>{const t=S[s.n][0];return`<button class="cy-row ${cySel===s.n?'on':''}" data-cy="${s.n}"><i>${pn(s.n)}</i><span>${esc(lab(s))}</span><em>${t===true?'✓':t===null?'○':'…'}</em></button>`}).join('')}</div></div>
 <div class="panel cy-detail" id="cyDetail"><div class="panel-head"><h3><span class="cy-num">${pn(sel.n)}</span> ${esc(lab(sel))}</h3><span class="pill ${st[0]===true?'':st[0]===null?'gold':'red'}">${esc(st[1])}</span></div><p>${esc(isBn()?sel.db:sel.de)}</p>${inl||''}
 <div class="actions">${sel.go?`<button class="btn primary" data-goto="${sel.go}">${esc(isBn()?sel.gb:sel.ge)} →</button>`:''}<button class="btn" data-cy="${sel.n>1?sel.n-1:10}">← ${T7('Previous','আগের ধাপ')}</button><button class="btn" data-cy="${sel.n<10?sel.n+1:1}">${T7('Next','পরের ধাপ')} →</button></div></div>`}
